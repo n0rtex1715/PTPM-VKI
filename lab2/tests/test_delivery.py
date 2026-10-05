@@ -9,12 +9,16 @@ from delivery_service import calculate_delivery_cost
 
 class TestDelivery(unittest.TestCase):
 
+    # Ожидаемые даты рассчитаны от фиксированной даты отправки в сервисе:
+    # 2026-09-03.
     def test_calculates_basic_delivery_cost(self):
         self.assertEqual(
             calculate_delivery_cost(1, 100, "обычный"),
             (700, "2026-09-04")
         )
 
+    # Граничные значения веса 0.1 и 50 кг допустимы, значения за ними —
+    # нет. При неверных параметрах сервис возвращает (-1, "0000-00-00").
     def test_accepts_minimum_weight(self):
         self.assertEqual(
             calculate_delivery_cost(0.1, 100, "обычный"),
@@ -81,6 +85,8 @@ class TestDelivery(unittest.TestCase):
             (-1, "0000-00-00")
         )
 
+    # Доплаты за тип посылки и коэффициенты веса проверяются отдельно,
+    # чтобы ошибки в одном тарифном правиле не маскировали другое.
     def test_adds_fragile_package_fee(self):
         self.assertEqual(
             calculate_delivery_cost(1, 100, "хрупкий"),
@@ -111,6 +117,8 @@ class TestDelivery(unittest.TestCase):
             (700, "2026-09-04")
         )
 
+    # Экспресс меняет цену и срок доставки; на границе срока округление
+    # вверх важно, например, для расстояния 1500 км.
     def test_halves_cost_for_express_delivery(self):
         self.assertEqual(
             calculate_delivery_cost(1, 100, "обычный", True),
