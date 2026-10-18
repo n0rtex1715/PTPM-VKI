@@ -10,7 +10,7 @@ from delivery_service import calculate_delivery_cost
 class TestDelivery(unittest.TestCase):
 
     # Ожидаемые даты рассчитаны от фиксированной даты отправки в сервисе:
-    # 2026-09-03.
+    # 2026-09-04.
     def test_calculates_basic_delivery_cost(self):
         self.assertEqual(
             calculate_delivery_cost(1, 100, "обычный"),
