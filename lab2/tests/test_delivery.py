@@ -117,24 +117,23 @@ class TestDelivery(unittest.TestCase):
             (700, "2026-09-04")
         )
 
-    # Экспресс меняет цену и срок доставки; на границе срока округление
-    # вверх важно, например, для расстояния 1500 км.
-    def test_halves_cost_for_express_delivery(self):
+    # Express
+    def test_doubles_cost_for_express_delivery(self):
         self.assertEqual(
             calculate_delivery_cost(1, 100, "обычный", True),
-            (350, "2026-09-04")
+            (1400, "2026-09-04")
         )
 
     def test_express_delivery_for_1000_km_takes_one_day(self):
         self.assertEqual(
             calculate_delivery_cost(1, 1000, "обычный", True),
-            (2600, "2026-09-04")
+            (10400, "2026-09-04")
         )
 
     def test_express_delivery_for_1500_km_rounds_up_to_two_days(self):
         self.assertEqual(
             calculate_delivery_cost(1, 1500, "обычный", True),
-            (3850, "2026-09-05")
+            (15400, "2026-09-05")
         )
 
 

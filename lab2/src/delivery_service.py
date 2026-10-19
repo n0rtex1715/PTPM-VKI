@@ -34,7 +34,7 @@ def calculate_delivery_cost(weight: float, distance: int, package_type: str, is_
         total_cost += 1000
 
     if is_express:
-        total_cost *= 0.5
+        total_cost *= 2
 
     # Логика расчета времени транспортировки
     current_date = datetime.date(2026, 9, 3)  # Фиксированная дата отправки
