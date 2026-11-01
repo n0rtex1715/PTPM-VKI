@@ -33,7 +33,7 @@ class TestRegistration(unittest.TestCase):
     # Для имени пользователя запрещена кириллица: допустимы только латиница,
     # цифры и символ подчёркивания.
     def test_rejects_login_with_cyrillic(self):
-        result = validate_registration("Петя123", "Секрет1!", "Секрет1!")
+        result = validate_registration("Петр123", "Секрет1!", "Секрет1!")
         self.assertFalse(result[0])
 
     # Запрещённые символы вроде дефиса не допускаются в обычном логине.
