@@ -136,6 +136,11 @@ class TestDelivery(unittest.TestCase):
             (15400, "2026-09-05")
         )
 
+    def test_100_kg_600_km_dang_express(self):
+        self.assertEqual(
+            calculate_delivery_cost(100, 600, "опасный", True),
+            (-1, "0000-00-00")
+        )
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)

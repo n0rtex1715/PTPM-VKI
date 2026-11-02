@@ -121,6 +121,11 @@ class TestRegistration(unittest.TestCase):
     def test_masks_different_passwords_differently(self):
         self.assertNotEqual(mask_password("Секрет1!"), mask_password("Секрет2!"))
 
+    def test_admin(self):
+        self.assertEqual(
+            validate_registration("Admin@gmail.com", "Секрет1!", "Секрет1!"),
+            (False, "Логин находится в черном списке")
+        )
 
 if __name__ == "__main__":
     # Запуск тестов напрямую с подробным выводом для удобства отладки.
